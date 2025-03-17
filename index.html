@@ -27,19 +27,19 @@
         // API Key de Mapbox
         mapboxgl.accessToken = 'pk.eyJ1IjoiaGVjdG9yMjUiLCJhIjoiY204Y2doYWU1MTdmeTJrb2xxaWY3cHV4NCJ9.rX9fIrwy2TmmN_r6Mqzhhw';
 
-        // Inicializar el mapa
+        // Inicializar el mapa con las coordenadas de la ciudad especificada
         var map = new mapboxgl.Map({
             container: 'map', // ID del div donde se carga el mapa
             style: 'mapbox://styles/mapbox/streets-v11', // Estilo del mapa
-            center: [-102.77358, 20.3553], // Coordenadas de inicio (CDMX, puedes cambiarlo)
+            center: [-102.77358, 20.3553], // Coordenadas actualizadas
             zoom: 12 // Nivel de zoom
         });
 
         // Lista de veterinarias con coordenadas y estado
         var veterinarias = [
-            { nombre: "Veterinaria A", lat: 19.4326, lng: -99.1332, estado: "Abierta" },
-            { nombre: "Veterinaria B", lat: 19.4420, lng: -99.1410, estado: "Cerrada" },
-            { nombre: "Veterinaria C", lat: 19.4200, lng: -99.1200, estado: "Abierta" }
+            { nombre: "Veterinaria Los Amigos", lat: 20.3565, lng: -102.7750, estado: "Abierta" },
+            { nombre: "Clinica Animalia", lat: 20.3540, lng: -102.7700, estado: "Cerrada" },
+            { nombre: "PetCare Express", lat: 20.3580, lng: -102.7800, estado: "Abierta" }
         ];
 
         // Agregar marcadores de veterinarias al mapa
@@ -58,4 +58,5 @@
     </script>
 </body>
 </html>
+
 
