@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Veterinarias</title>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+    <style>
+        body { margin: 0; padding: 0; }
+        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script>
+        mapboxgl.accessToken = 'TU_MAPBOX_API_KEY'; // Reemplaza con tu API Key de Mapbox
+
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11', // Puedes cambiar a otro estilo
+            center: [-99.1332, 19.4326], // Coordenadas de la Ciudad de México (puedes cambiarlas)
+            zoom: 12
+        });
+
+        // Lista de veterinarias con nombre, coordenadas y estado
+        var veterinarias = [
+            { nombre: "Veterinaria A", lat: 19.4326, lng: -99.1332, estado: "Abierta" },
+            { nombre: "Veterinaria B", lat: 19.4420, lng: -99.1410, estado: "Cerrada" },
+            { nombre: "Veterinaria C", lat: 19.4200, lng: -99.1200, estado: "Abierta" }
+        ];
+
+        // Agregar marcadores de veterinarias al mapa
+        veterinarias.forEach(function(vet) {
+            var el = document.createElement('div');
+            el.style.backgroundColor = vet.estado === "Abierta" ? "green" : "red"; // Verde si está abierta, rojo si está cerrada
+            el.style.width = '20px';
+            el.style.height = '20px';
+            el.style.borderRadius = '50%';
+
+            new mapboxgl.Marker(el)
+                .setLngLat([vet.lng, vet.lat])
+                .setPopup(new mapboxgl.Popup().setHTML(`<h3>${vet.nombre}</h3><p>Estado: ${vet.estado}</p>`))
+                .addTo(map);
+        });
+    </script>
+</body>
+</html>
